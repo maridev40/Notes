@@ -7,10 +7,22 @@ def printCommands(commands):
     print(f"<<< Список команд: {str} >>>")
 
 def printList(notes):
-    if len(notes) != 0:
-        print("Список заметок: ")
+    sdate = getDate()
+    if len(sdate) != 0:
+        for i in notes:
+            if sdate in notes[i]["date"]:
+                print(f"Список заметок с датой {sdate}: ")
+                break;
+    else:
+        printIfEmpty(notes)
+        if len(notes) != 0:
+            print("Список заметок: ")
     for i in notes:
-        printMsg(i, notes[i]["date"], notes[i]["title"]) 
+        if len(sdate) != 0:
+            if sdate in notes[i]["date"]: 
+                printMsg(i, notes[i]["date"], notes[i]["title"]) 
+        else:
+            printMsg(i, notes[i]["date"], notes[i]["title"]) 
 
 def printIfEmpty(notes):
     if len(notes) == 0:
@@ -45,3 +57,6 @@ def getNumCommand():
 
 def getNoteId():
     return int(input("Введите идентификатор заметки: "))
+
+def getDate():
+  return input('Начните вводить дату заметок для поиска или оставьте поле пустым: ')

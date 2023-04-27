@@ -4,7 +4,6 @@ import io
 note_id_counter = 0
 
 note = {"date": "", "title": "", "msg": ""}
-# notes = dict()
 
 def getNewNote():
     global note

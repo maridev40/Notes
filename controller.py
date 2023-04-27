@@ -8,7 +8,6 @@ def run():
     model.getLastNoteId()
     cycle = True
     notes = dict()
-    # seq = 1
     index = 0
     next = ""
 
@@ -35,9 +34,6 @@ def run():
 
             elif (commands[num] == "Add"):
                 index = model.getNewId()
-                # index = seq
-                # seq = seq + 1
-                # print("40 contr")
                 notes[index] = model.getNewNote()
                 next = "title"
 
@@ -66,13 +62,10 @@ def run():
 
             if next == "title":
                 msg = view.getTitle()
-                # print(f"70 {notes}")
                 if msg != "":
                     notes[index]["title"] = msg 
-                # print("73 contr")    
                 notes[index]["date"] = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-                next = "msg"
-                # print("76 contr")      
+                next = "msg"    
                 
             if next == "msg":
                 msg = view.getMsg()
@@ -91,7 +84,6 @@ def checkCommand(num):
     return True
 
 def checkId(num, notes):
-    # print(num, nots)
     for i in notes:
         if i == num:
             return True
@@ -105,7 +97,6 @@ def readNotes(notes):
             pb = file.readline()
             pb = file.readline()
 
-            # new_pb = {}
             while pb:
 
                 new_temp = {}
@@ -132,7 +123,6 @@ def saveNotes(notes):
         return
     
     new_notes = readNotes(notes)
-    print(135, new_notes)
 
     with open('Notes.txt', 'w', encoding='utf-8') as file:
         file.writelines(f"id;date;title;msg\n")
